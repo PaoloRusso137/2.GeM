@@ -16,7 +16,7 @@ class GeoLocalizationNet(nn.Module):
         super().__init__()
         self.backbone = get_backbone(args)
         self.aggregation = nn.Sequential(L2Norm(),
-                                         torch.nn.AdaptiveAvgPool2d(1),
+                                         GeM(),
                                          Flatten())
     def forward(self, x):
         x = self.backbone(x)
